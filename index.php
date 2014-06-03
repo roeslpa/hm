@@ -19,6 +19,7 @@ mysql_error();
 #issue5: picture for hanging man
 #issue6: think about the statistics because one can create two accounts and cheat up his account
 */
+
 $gid = $_SESSION['gid']; //Game ID
 $uid = $_SESSION['uid']; //User ID
 $s = $_GET['s'];	//Site ID
@@ -42,27 +43,31 @@ include("actions.php");
 
 
 if($s=='') {
-	echo "<div class='listOfGames'>";
+	echo "	<div class='listOfGames'>";
 	$query = mysql_query("select `gid`,`name` from `hm` where (`leader` = '1' and `gend` = '1')");
 	while($row = mysql_fetch_array($query)) {
-		echo "<a href='?s=n&gid=".$row['gid']."'>".$row['name']."</a><br>";
+		echo "	<a href='?s=n&gid=".$row['gid']."'>".$row['name']."</a><br>";
 	}
-	echo "<a href='?s=n'>New Game</a></div>";
+	echo "		<a href='?s=n'>New Game</a>
+			</div>";
 }
 if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 {
-	echo "<div class='getInGame'>";
+	echo "	<div class='getInGame'>";
 	if($_GET['gid'] == '') {
-		echo "<form action='?s=g&a=newg' method='post'>
-			Gamepassword: <input type='password' name='gpwd'><br>
-			Word: <input type='text' name='wort'><br>	
-			<input type='submit' value='ok'></form>";
+		echo "	<form action='?s=g&a=newg' method='post'>
+					Gamepassword: <input type='password' name='gpwd'><br>
+					Word: <input type='text' name='wort'><br>	
+					<input type='submit' value='ok'>
+				</form>";
 	} else if($_GET['gid'] != '') {		//Spiel beitreten
-		echo "<form action='?s=g&a=chgid' method='post'><input type='hidden' name='gid' value='".$_GET['gid']."'>
-			Gamepassword: <input type='password' name='gpwd'><br>
-			<input type='submit' value='ok'></form>";
+		echo "	<form action='?s=g&a=chgid' method='post'>
+					<input type='hidden' name='gid' value='".$_GET['gid']."'>
+					Gamepassword: <input type='password' name='gpwd'><br>
+					<input type='submit' value='ok'>
+				</form>";
 	}
-	echo "</div>";
+	echo "	</div>";
 } else if($s=='g' && $gid!='' && $uid!='' && $gid!='0') {
 	$leader=0;
 	$query = mysql_query("select `word`,`letters`,`gend`,`name` from `hm` where `gid` = '".$gid."' and (`leader` = '1' or `id` = '".$uid."') order by `leader` desc limit 0,2");
@@ -82,7 +87,6 @@ if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 	$alphabet = get_alphabet($word);
 	if($leader != 1)
 	{
-		echo $leaderName." ";
 		include ("player.php");
 	} else {
 		include("leader.php");
@@ -90,25 +94,27 @@ if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 }
 else if($uid == '' && $s == '')
 {
-	echo "<div class='loginForm'>
-			<form action='?s=".$s."&a=login' method='post'><input name='name' type='text'><br>
-			<input name='pwd' type='password'><input type='submit' value='login'></form>
+	echo "	<div class='loginForm'>
+				<form action='?s=".$s."&a=login' method='post'>
+					<input name='name' type='text'><br>
+					<input name='pwd' type='password'><input type='submit' value='login'>
+				</form>
 			</div>";
 }
-echo "<br>";
+echo "	<div class='buttonsFromIndex'><br>";
 if($uid != '' && ($gid == '' || $gid == '0') && $s != 'g') {
-	echo "<br><a href='?'>refresh</a>";
+	echo "	<br><a href='?'>refresh</a>";
 }
 if($uid != '' && $gid != '' && $gid != '0' && $s != 'g') {
-	echo "<br><a href='?s=g'>back to game</a>";
+	echo "	<br><a href='?s=g'>back to game</a>";
 }
 if($uid != '' && $gid != '' && $gid != '0') {
-	echo "<br><a href='?a=chgid&leave=1'>leave game</a>";
+	echo "	<br><a href='?a=chgid&leave=1'>leave game</a>";
 }
 if($uid != '') {
-	echo "<br><a href='?a=logout'>logout</a>";
+	echo "	<br><a href='?a=logout'>logout</a>";
 }
-
+echo "	</div>";
 
 ?>
 </div>
