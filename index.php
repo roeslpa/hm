@@ -1,43 +1,23 @@
 <?php
-
 session_start();
-
 error_reporting(0);
-
 mysql_error();
 
-
-
 /*
-
 	#issue1: gameend and #issue2
-
 	#issue1.0.1: echo guessed word at leader
-
 	#issue1.1: enter new word
-
 	#issue1.5: update user_word if all letters are guessed right (it is needed and expected from issue 1)
-
 #issue1.9: real stats: winner 2 points, right word 1 point, else 0 points; make new column `lastpoints`
-
 #issue1.9.5: show all gamemembers the stats
-
 	#issue2: join when gend == 1, no join and wait when gend == 0 ... gend at leader	+++not sure, but i guess it works
-
 #issue2.3: if user is opener, leaves and creates a new game, while others are in the old game and the old game has another leader it crashes.
-
 #issue3: registration
-
 #issue4: passwd hashing
-
 #issue4.2: give minimal access to actions in actions.php
-
 #issue4.5: remove ability for sqlinjection
-
 #issue5: picture for hanging man
-
 #issue6: think about the statistics because one can create two accounts and cheat up his account
-
 */
 $gid = $_SESSION['gid']; //Game ID
 $uid = $_SESSION['uid']; //User ID
