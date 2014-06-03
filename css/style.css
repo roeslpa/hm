@@ -29,6 +29,10 @@ input {
 	height: 35px;
 }
 
+input[type="submit"] {
+	width: 50%;
+}
+
 a:hover {
 	color: #fff;
 	background-color: #000;
