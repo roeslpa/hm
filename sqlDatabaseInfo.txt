@@ -1,0 +1,50 @@
+-- phpMyAdmin SQL Dump
+-- version 2.10.1
+-- http://www.phpmyadmin.net
+-- 
+-- Host: localhost
+-- Erstellungszeit: 03. Juni 2014 um 19:49
+-- Server Version: 5.0.32
+-- PHP-Version: 5.2.17
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+-- 
+-- Datenbank: `Your Database Name`
+-- 
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `hm`
+-- 
+
+CREATE TABLE `hm` (
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `pwd` varchar(200) NOT NULL,
+  `gid` bigint(20) unsigned NOT NULL,
+  `leader` tinyint(1) NOT NULL,
+  `gpwd` varchar(200) NOT NULL,
+  `gend` tinyint(1) NOT NULL,
+  `letters` varchar(50) NOT NULL,
+  `word` varchar(400) NOT NULL,
+  `games` bigint(20) unsigned NOT NULL,
+  `points` bigint(20) unsigned NOT NULL,
+  `lastpoints` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `gid` (`gid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+
+-- id:		user id
+-- name:	user name
+-- pwd:		user password; will be hashed in the future
+-- gid:		game id; opener has id=gid; all entering users will refer with it to the user id of the opener
+-- leader:	=1 for the game leader; game leader is the opener at first and then the winner of the last game
+-- gpwd:	game password, it is chosen by the opener and required to enter the game
+-- gend:	=1 => everyone with gpwd can enter the game, but it can not be played yet; =0 => it is played and no one can enter the game
+-- letters:	the guessed letters by the player, every new letter is just appended to this string
+-- word:	if user is the leader, word=chosen word which should be guessed; else the solution of the player is entered in here
+-- games:	number of games the user played
+-- points:	points the user gained by playing
+-- lastpoints: points the user gained in the last game
