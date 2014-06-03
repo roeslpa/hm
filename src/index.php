@@ -4,6 +4,7 @@ error_reporting(0);
 mysql_error();
 
 /*
+before github:
 	#issue1: gameend and #issue2
 	#issue1.0.1: echo guessed word at leader
 	#issue1.1: enter new word
