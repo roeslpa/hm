@@ -33,7 +33,7 @@ if($gend == 1) {	//TODO: echo the stats
 				</div>";
 	
 		if($wrongLetters > '0') {
-			echo "<div class='playerHangmanImage'><img src='images/".$wrongLetters.".gif' style='display:inline-block;'></div>";
+			echo "<div class='playerHangmanImage'><img src='../images/".$wrongLetters.".gif' style='display:inline-block;'></div>";
 		}
 		echo "	<div class='playerSolveForm'>
 					<form action='?s=g' method='get'>
@@ -46,7 +46,7 @@ if($gend == 1) {	//TODO: echo the stats
 		echo "	<div class='playerGameEndMessage'>
 					<br>you tried 10 wrong letters, wait until everyone finished the game and the leader submitted the points<br>
 					<a href='?s=g'>refresh</a>
-					<img src='images/10.gif' style='display:block;'>
+					<img src='../images/10.gif' style='display:block;'>
 				</div>";
 	} else if($u_word != '') {
 		echo "	<div class='playerGameEndMessage'>

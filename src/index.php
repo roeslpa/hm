@@ -25,14 +25,14 @@ $uid = $_SESSION['uid']; //User ID
 $s = $_GET['s'];	//Site ID
 $a = $_GET['a'];
 
-include('../inc/db.php.inc');
+include('../../inc/db.php.inc');
 include("functions.php");
 include("actions.php");
 ?>
 <head> 
 	<title>Hangman ITS</title>
-    <link href="css/normalize.css" type="text/css" rel="stylesheet">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="../css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="../css/style.css" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
