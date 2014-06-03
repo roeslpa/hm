@@ -1,7 +1,4 @@
 <?php
-session_start();
-error_reporting(0);
-mysql_error();
 
 /*
 before github:
@@ -26,7 +23,6 @@ $uid = $_SESSION['uid']; //User ID
 $s = $_GET['s'];	//Site ID
 $a = $_GET['a'];
 
-include('../../inc/db.php.inc');
 include("functions.php");
 include("actions.php");
 ?>
