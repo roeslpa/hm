@@ -1,5 +1,5 @@
 <?php
-//??eintragen vom raten oder lösen !!wichtig auf großschreibung umwandeln
+
 if($_GET['try'] != '') {
 	$try = strtoupper($_GET['try']);
 	$query = mysql_query("update `hm` set `letters` = CONCAT(`letters`,'".$try."') where `id`=".$uid);
@@ -7,7 +7,7 @@ if($_GET['try'] != '') {
 } else if($_GET['solve'] != '') {
 	$solve = strtoupper($_GET['solve']);
 	$u_word = $solve;
-	$query = mysql_query("update `hm` set `word` = '".$solve."' where `id`=".$uid);
+	$query = mysql_query("update `hm` set `word` = '".$solve."' where `id`=".$uid." and `word` = ''");
 }
 //sel word from where gid=gid and leader=1
 
@@ -16,9 +16,11 @@ $guessedAllLetters = print_word($word,$u_letters);
 $wrongLetters = get_wrong_letters($u_letters,$alphabet,1);
 echo "	</div>";
 
-if($gend == 1) {
-	echo "	<br>wait until the leader starts the game..<br>
-			<a href='?s=g'>refresh</a>";
+if($gend == 1) {	//TODO: echo the stats
+	echo "	<div class='playerGameEndMessage'>
+				<br>wait until the leader starts the game..<br>
+				<a href='?s=g'>refresh</a>
+			</div>";
 } else {
 	echo "<div class='playerVariableContent'>";
 	if($wrongLetters < 10 && $u_word == '' && $guessedAllLetters != 1) {

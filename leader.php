@@ -9,9 +9,13 @@ gameend[player] = 1 if (word != '' or wrong guesses >9)
 if gameend[all] == 1 => calculate stats
 */
 if($word == '') {
-	echo "<form action='?s=g&a=newword' method='post'>
-		New word: <input type='text' name='newwordset'> <input type='submit' value='ok'></form>";
+	echo "	<div class='getInGame'>
+				<form action='?s=g&a=newword' method='post'>
+					New word: <input type='text' name='newwordset'> <input type='submit' value='ok'>
+				</form>
+			</div>";
 } else {
+	echo "<div class='playerList'>";
 	$players = 0;
 	$finished_players = 0;
 	$finished_letters = 15;
@@ -42,35 +46,36 @@ if($word == '') {
 		$players++;
 	}
 	
+	echo "	</div>";
+	
+	echo "	<div class='buttonsFromLeader'>";
 	if($gend == 1) {
-		echo "<br><a href='?s=g&a=startgame'>start game</a>";
+		 echo "	<br><a href='?s=g&a=startgame'>start game</a>";
 	}
 	
 	if($finished_players == $players && $players > 1)
 	{
 		$sorted_player_ids = sort_players($word,$players,$ids,$words,$letters,$wrong_letters);
-		if($sorted_player_ids['intwin'] == 1) {
+		if($sorted_player_ids['intwin'] == 1) {			//one winner
 			echo "The winner is: ".$name[$sorted_player_ids['winner_list']];
 				//create list of cases how points are spread
+			
 			$query = mysql_query("update `hm` set `leader` = case `id` when '".$sorted_player_ids['winner_id']."' then '1' else '0' end, ".
-			"`gend` = case `leader` when '1' then '1' else '0' end,`letters` = '', `word` = '' where `gid`='".$gid."'");
-		} else if($sorted_player_ids['intwin'] > 1) {
+									"`gend` = case `leader` when '1' then '1' else '0' end,`letters` = '', `word` = '' where `gid`='".$gid."'");
+		} else if($sorted_player_ids['intwin'] > 1) {	//more than one winner
 			$query = mysql_query("update `hm` set `gend` = case `leader` when '1' then '1' else '0' end, `letters` = '', `word` = '' where `gid`='".$gid."'");
 			echo "there are more than one winner: "."the leader will choose another word.";
-		} else {
+		} else {										//no winner
 			$query = mysql_query("update `hm` set `gend` = case `leader` when '1' then '1' else '0' end, `letters` = '', `word` = '' where `gid`='".$gid."'");
-			echo "no one is the winner. the leader will choose another word.";
+			echo "no one is the winner. you will choose another word.";
 		}
 		
 		echo "<br><a href='?s=g'>continue</a><br>";
-		//??sieger berechnen: wenigste letters, wenigste falsch
-		//??falls kein sieger => keinen eintragen => leader wieder
-		//??punkte verteilen
-		//??gend auf 1
-		//??stats anzeigen
-		//??refreshbutton
+		echo "</div>";
 	} else {
-		echo "<br><a href='?s=g'>refresh</a>";
+		echo "<div class='buttonsFromLeader'>
+				<br><a href='?s=g'>refresh</a>
+			</div>";
 	}
 }
 ?>
