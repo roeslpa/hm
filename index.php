@@ -30,8 +30,8 @@ $uid = $_SESSION['uid']; //User ID
 $s = $_GET['s'];	//Site ID
 $a = $_GET['a'];
 
-include("functions.php");
-include("actions.php");
+include("src/functions.php");
+include("src/actions.php");
 ?>
 <head> 
 	<title>Hangman ITS</title>
@@ -99,9 +99,9 @@ if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 	$alphabet = get_alphabet($word);
 	if($leader != 1)
 	{
-		include ("player.php");
+		include ("src/player.php");
 	} else {
-		include("leader.php");
+		include("src/leader.php");
 	}
 }
 else if($uid == '' && $s == '')
