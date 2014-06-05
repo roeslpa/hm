@@ -4,6 +4,9 @@
 	//URL-Auswerung mit GET
 	//->Überprüfung auf Permission
 	//->Setzen der Show-Variabeln
+	$gameId = $_SESSION['gameId']; //Game ID
+	$userId = $_SESSION['userId'];
+	
 	$container_title = array('login', 'lobby', 'create', 'gameplay', 'leader', 'rank');
 	$_GET['login'] = 'on'; $_GET['lobby'] = 'on'; $_GET['create'] = 'on'; $_GET['gameplay'] = 'on'; $_GET['leader'] = 'on'; $_GET['rank'] = 'on'; 
 	if(isset($_GET['login'])){
@@ -19,11 +22,12 @@
 	}
 	if(isset($_GET['gameplay'])){
 		//check permission
-		$show_container['gameplay'] = true;
-	}
-	if(isset($_GET['leader'])){
-		//check permission
-		$show_container['leader'] = true;
+		$leaderInfo = getLeaderInfo($userId,$gameId);
+		if($leaderInfo['status'] == 0) {
+			$show_container['gameplay'] = true;
+		} else {
+			$show_container['leader'] = true;
+		}
 	}
 	if(isset($_GET['rank'])){
 		//check permission
