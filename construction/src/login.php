@@ -9,14 +9,18 @@ if(isset($_GET['checklogin'])) {
 		{
 			$_SESSION['uid'] = $row['id'];
 			$uid = $_SESSION['uid'];
+		}else{
+			$msg = 'input is wrong';
 		}
 	} elseif($_GET['checklogin'] == 'logout') {
-		$_SESSION = array(); //leert alle Variabeln
-		session_destroy(); //zerstört Session
+		if(isset($_SESSION['uid'])){
+			$_SESSION = array(); //leert alle Variabeln
+			session_destroy(); //zerstört Session
+		}
 	}
 }
 
-
+ob_start(); //prepaire OUTPUT	
 if(!(isset($_SESSION['uid']) && !empty($_SESSION['uid']))){
 ?>
 <div class="loginContainer">
@@ -40,5 +44,7 @@ hallo <?=$username?>
 </p>
 </div>
 <?php 
-} 
+
+}
+$content['login'] = ob_get_clean(); //save OUTPUT
 ?>

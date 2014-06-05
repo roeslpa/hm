@@ -1,5 +1,6 @@
 <?php
 	include_once( '../../inc/db.php.inc' );
+
 	$include_path = 'src/';
 	//URL-Auswerung mit GET
 	//->Überprüfung auf Permission
@@ -43,6 +44,12 @@
 	}
 	
 	if(count($show_container)<1)$show_container['login']= 'on';
+	
+	for($index_container_title = 0; $index_container_title < count($container_title); $index_container_title++) { 
+		if(isset($show_container[$container_title[$index_container_title]])) {
+			include_once( $include_path.$container_title[$index_container_title].'.php' );
+		}
+	}
 ?>	
 <!doctype html>
 <html>
@@ -55,10 +62,13 @@
 </head>
 <body>
 <div class="wrapper">
+<header>
+<?php include_once( $include_path.'header.php' )?>
+</header>
 <?php
-	for($index_container_title = 0; $index_container_title < count($container_title); $index_container_title++) { 
+for($index_container_title = 0; $index_container_title < count($container_title); $index_container_title++) { 
 		if(isset($show_container[$container_title[$index_container_title]])) {
-			include_once( $include_path.$container_title[$index_container_title].'.php' );
+			echo $content['login'];
 		}
 	}
 ?>
