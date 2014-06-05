@@ -1,0 +1,47 @@
+/*Stylesheet*/
+div {
+	border: solid 1px black;
+	margin: 5px;
+	padding: 10px;
+}
+
+.wrapper {
+	display: block;
+	margin: 15px auto;
+	max-width: 300px;
+	text-align: left;
+	font-size: 18px;
+}
+
+form {
+	text-align: left;
+}
+
+a {
+	padding: 15px 25px;
+	border: solid gray 1px;
+	margin: 5px;
+	text-decoration: none;
+	display: inline-block;
+	color: black;
+	font-weight: bold;
+	background-color: #fff;
+	
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+input {
+	margin: 5px;
+	margin-left: 0;
+	display: block;
+	height: 35px;
+}
+
+
+a:hover {
+	color: #fff;
+	background-color: #000;
+}
