@@ -11,6 +11,10 @@ function get_alphabet($word) {
 	return $alphabet;
 }
 
+function hash_pw($str) {
+	return hash('sha512', $str);	
+}
+
 function print_word($word,$letters) {
 	for($i=0;$i<strlen($letters);$i++) {
 		$my_alphabet[$letters[$i]] = $letters[$i];
