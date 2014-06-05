@@ -21,12 +21,13 @@
 		$show_container['create'] = true;
 	}
 	if(isset($_GET['gameplay'])){
-		//check permission
-		$leaderInfo = getLeaderInfo($userId,$gameId);
-		if($leaderInfo['status'] == 0) {
-			$show_container['gameplay'] = true;
-		} else {
-			$show_container['leader'] = true;
+		if($gid!='' && $uid!='' && $gid!='0') {
+			$gameInfo = getGameInfo($userId,$gameId);
+			if($leaderInfo['status'] == 0) {
+				$show_container['gameplay'] = true;
+			} else {
+				$show_container['leader'] = true;
+			}
 		}
 	}
 	if(isset($_GET['rank'])){
