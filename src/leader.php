@@ -9,11 +9,14 @@ gameend[player] = 1 if (word != '' or wrong guesses >9)
 if gameend[all] == 1 => calculate stats
 */
 if($word == '') {
-	echo "	<div class='getInGame'>
-				<form action='?s=g&a=newword' method='post'>
-					New word: <input type='text' name='newwordset'> <input type='submit' value='ok'>
-				</form>
-			</div>";
+	?>
+    <div class='getInGame'>
+        <form action='?s=g&a=newword' method='post' form="formNewWord">
+            New word: <input type='text' name='newwordset'>
+            <a href="#" onClick="formNewWord.submit()">ok</a>
+        </form>
+    </div>
+	<?php
 } else {
 	echo "<div class='playerList'>";
 	$players = 0;

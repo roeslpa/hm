@@ -28,47 +28,55 @@ if($gend == 1) {	//TODO: echo the stats
 	</div>
     <?php
 } else {
-	echo "<div class='playerVariableContent'>";
+	?><div class='playerVariableContent'><?php
 	if($wrongLetters < 10 && $u_word == '' && $guessedAllLetters != 1) {
 		?>
         <div class='playerTryForm'>
-            <form action='?s=g' method='get' autocomplete='off'>
+            <form action='?s=g' method='get' autocomplete='off' name="formTry">
                 <input type='hidden' name='s' value='g' style='display:inline-block; width: 100px;'>
                 <input type='text' name='try' size='2' autocomplete='off' autocorrect='off' class='field try-field' style='display:inline-block;'>
-                <input type='submit' value='try' style='display:inline-block; width: 70px;'>
+                <a href="#" onClick="formTry.submit()">try</a>
             </form>
 		</div>
        	<?php
 	
 		if($wrongLetters > '0') {
-			echo "<div class='playerHangmanImage'><img src='../images/".$wrongLetters.".gif' style='display:inline-block;'></div>";
+			echo "<div class='playerHangmanImage'><img src='images/".$wrongLetters.".gif' style='display:inline-block;'></div>";
 		}
-		echo "	<div class='playerSolveForm'>
-					<form action='?s=g' method='get'>
-						<input type='hidden' name='s' value='g'>
-						<input type='text' name='solve' autocomplete='off' autocorrect='off'>
-						<input type='submit' value='solve'>
-					</form>
-				</div>";
+		?>
+        <div class='playerSolveForm'>
+            <form action='?s=g' method='get'>
+                <input type='hidden' name='s' value='g'>
+                <input type='text' name='solve' autocomplete='off' autocorrect='off'>
+                <input type='submit' value='solve'>
+            </form>
+		</div>
+        <?php
 	} else if($wrongLetters > 9) {
-		echo "	<div class='playerGameEndMessage'>
-					<br>you tried 10 wrong letters, wait until everyone finished the game and the leader submitted the points<br>
-					<a href='?s=g'>refresh</a>
-					<img src='../images/10.gif' style='display:block;'>
-				</div>";
+		?>
+        <div class='playerGameEndMessage'>
+            <br>you tried 10 wrong letters, wait until everyone finished the game and the leader submitted the points<br>
+            <a href='?s=g'>refresh</a>
+            <img src='images/10.gif' style='display:block;'>
+        </div>
+        <?php
 	} else if($u_word != '') {
-		echo "	<div class='playerGameEndMessage'>
-					<br>you guessed <u>".$u_word."</u>, wait until everyone finished the game and the leader submitted the points<br>
-					<a href='?s=g'>refresh</a>
-				</div>";
+		?>
+        <div class='playerGameEndMessage'>
+            <br>you guessed <u>".$u_word."</u>, wait until everyone finished the game and the leader submitted the points<br>
+            <a href='?s=g'>refresh</a>
+        </div>
+		<?php
 	} else if($guessedAllLetters == 1) {
 		$query = mysql_query("update `hm` set `word` = '".$word."' where `id`='".$uid."'");
-		echo "	<div class='playerGameEndMessage'>
-					<br>you guessed all letters right, wait until everyone finished the game and the leader submitted the points<br>
-					<a href='?s=g'>refresh</a>
-				</div>";
+		?>
+        <div class='playerGameEndMessage'>
+            <br>you guessed all letters right, wait until everyone finished the game and the leader submitted the points<br>
+            <a href='?s=g'>refresh</a>
+        </div>
+        <?php
 	}
-	echo "</div>";
+	?></div><?php
 }
 
 ?>
