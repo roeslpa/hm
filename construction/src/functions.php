@@ -87,23 +87,23 @@ function sort_players($word,$players,$ids,$words,$letters,$wrong_letters) {
 	return $result;
 }
 
-function getLeaderInfo($userId,$gameId) {
+function getGameInfo($userId,$gameId) {
 	$leader=0;
 	$query = mysql_query("select `word`,`letters`,`gend`,`name` from `hm` where `gid` = '".$gameId."' and (`leader` = '1' or `id` = '".$userId."') order by `leader` desc limit 0,2");
 	while($row = mysql_fetch_array($query))
 	{
 		if($leader==0) {
-			$leaderInfo['leaderWord'] = $row['word'];
-			$leaderInfo['gameEnd'] = $row['gend'];
-			$leaderInfo['leaderName'] = $row['name'];
+			$gameInfo['leaderWord'] = $row['word'];
+			$gameInfo['gameEnd'] = $row['gend'];
+			$gameInfo['leaderName'] = $row['name'];
 		} else {
-			$leaderInfo['userLetters'] = $row['letters'];
-			$leaderInfo['userWord'] = $row['word'];
+			$gameInfo['userLetters'] = $row['letters'];
+			$gameInfo['userWord'] = $row['word'];
 		}
 		$leader++;
 	}
-	$leaderInfo['status'] = $leader % 2;
-	$leaderInfo['alphabet'] = get_alphabet($leaderInfo['leaderWord']);
+	$gameInfo['status'] = $leader % 2;
+	$gameInfo['alphabet'] = get_alphabet($gameInfo['leaderWord']);
 	
 	return leaderInfo;
 }
