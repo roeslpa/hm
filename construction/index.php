@@ -1,5 +1,5 @@
 <?php
-	//include_once( '' );
+	include_once( '../../inc/db.php.inc' );
 	$include_path = 'src/';
 	//URL-Auswerung mit GET
 	//->Überprüfung auf Permission
@@ -8,7 +8,14 @@
 	$userId = $_SESSION['userId'];
 	
 	$container_title = array('login', 'lobby', 'create', 'gameplay', 'leader', 'rank');
-	$_GET['login'] = 'on'; $_GET['lobby'] = 'on'; $_GET['create'] = 'on'; $_GET['gameplay'] = 'on'; $_GET['leader'] = 'on'; $_GET['rank'] = 'on'; 
+	
+	$_GET['login'] = 'on';
+	/*$_GET['lobby'] = 'on';
+	$_GET['create'] = 'on';
+	$_GET['gameplay'] = 'on';
+	$_GET['leader'] = 'on';
+	$_GET['rank'] = 'on'; */
+	
 	if(isset($_GET['login'])){
 		$show_container['login'] = true;
 	}
@@ -38,8 +45,11 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Hangman ITS</title>
+    <meta charset="utf-8">
+    <title>Hangman ITS</title>
+    <link href="css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
 <div class="wrapper">
