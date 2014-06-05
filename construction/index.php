@@ -23,7 +23,7 @@
 	if(isset($_GET['gameplay'])){
 		if($gid!='' && $uid!='' && $gid!='0') {
 			$gameInfo = getGameInfo($userId,$gameId);
-			if($leaderInfo['status'] == 0) {
+			if($gameInfo['status'] == 0) {
 				$show_container['gameplay'] = true;
 			} else {
 				$show_container['leader'] = true;
