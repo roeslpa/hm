@@ -11,26 +11,34 @@ if($_GET['try'] != '') {
 }
 //sel word from where gid=gid and leader=1
 
-echo "	<div class='playerStatusContent'>".$leaderName."<br>";
+?>
+<div class='playerStatusContent'><?=$leaderName?><br>
+<?php
 $guessedAllLetters = print_word($word,$u_letters);
 $wrongLetters = get_wrong_letters($u_letters,$alphabet,1);
-echo "	</div>";
+?>
+</div>
+<?php
 
 if($gend == 1) {	//TODO: echo the stats
-	echo "	<div class='playerGameEndMessage'>
-				<br>wait until the leader starts the game..<br>
-				<a href='?s=g'>refresh</a>
-			</div>";
+	?>
+    <div class='playerGameEndMessage'>
+		<br>wait until the leader starts the game..<br>
+		<a href='?s=g'>refresh</a>
+	</div>
+    <?php
 } else {
 	echo "<div class='playerVariableContent'>";
 	if($wrongLetters < 10 && $u_word == '' && $guessedAllLetters != 1) {
-		echo "	<div class='playerTryForm'>
-					<form action='?s=g' method='get' autocomplete='off'>
-						<input type='hidden' name='s' value='g' style='display:inline-block; width: 100px;'>
-						<input type='text' name='try' size='2' autocomplete='off' autocorrect='off' class='field try-field' style='display:inline-block;'>
-						<input type='submit' value='try' style='display:inline-block; width: 70px;'>
-					</form>
-				</div>";
+		?>
+        <div class='playerTryForm'>
+            <form action='?s=g' method='get' autocomplete='off'>
+                <input type='hidden' name='s' value='g' style='display:inline-block; width: 100px;'>
+                <input type='text' name='try' size='2' autocomplete='off' autocorrect='off' class='field try-field' style='display:inline-block;'>
+                <input type='submit' value='try' style='display:inline-block; width: 70px;'>
+            </form>
+		</div>
+       	<?php
 	
 		if($wrongLetters > '0') {
 			echo "<div class='playerHangmanImage'><img src='../images/".$wrongLetters.".gif' style='display:inline-block;'></div>";

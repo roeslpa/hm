@@ -6,6 +6,7 @@ before github:
 	#issue1.0.1: echo guessed word at leader
 	#issue1.1: enter new word
 	#issue1.5: update user_word if all letters are guessed right (it is needed and expected from issue 1)
+#issue1.8: need a unit to test gameplay, leading and layout !important (possible with php classes)
 #issue1.9: real stats: winner 2 points, right word 1 point, else 0 points; make new column `lastpoints`
 #issue1.9.5: show all gamemembers the stats
 	#issue2: join when gend == 1, no join and wait when gend == 0 ... gend at leader	+++not sure, but i guess it works
@@ -57,18 +58,18 @@ if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 	?><div class='getInGame'><?php
 	if($_GET['gid'] == '') {
 		?>
-        <form action='?s=g&a=newg' method='post'>
+        <form action='?s=g&a=newg' method='post' name='formNewGame'>
             Gamepassword: <input type='password' name='gpwd'><br>
             Word: <input type='text' name='wort'><br>	
-            <input type='submit' value='ok'>
+            <a href='#' onClick='formNewGame.submit()'>create</a>
 		</form>
 		<?php
 	} else if($_GET['gid'] != '') {		//Spiel beitreten
 		?>
-        <form action='?s=g&a=chgid' method='post'>
+        <form action='?s=g&a=chgid' method='post' name='formJoin'>
             <input type='hidden' name='gid' value='<?=$_GET['gid']?>'>
             Gamepassword: <input type='password' name='gpwd'><br>
-            <input type='submit' value='ok'>
+            <a href="#" onClick="formJoin.submit()">join</a>
 		</form>
 		<?php
 	}
@@ -101,9 +102,10 @@ else if($uid == '' && $s == '')
 {
 	?>
     <div class='loginForm'>
-        <form action='?s=<?=$s?>&a=login' method='post'>
+        <form action='?s=<?=$s?>&a=login' method='post' name="formLogin">
             <input name='name' type='text'><br>
-            <input name='pwd' type='password'><input type='submit' value='login'>
+            <input name='pwd' type='password'>
+            <a href = "#" onClick="formLogin.submit()" alt="login">login</a>
         </form>
 	</div>
     <?php
