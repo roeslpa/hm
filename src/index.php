@@ -28,8 +28,8 @@ include("actions.php");
 ?>
 <head> 
 	<title>Hangman ITS</title>
-    <link href="../css/normalize.css" type="text/css" rel="stylesheet">
-    <link href="../css/style.css" type="text/css" rel="stylesheet">
+    <link href="css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
@@ -40,29 +40,37 @@ include("actions.php");
 
 
 if($s=='') {
-	echo "	<div class='listOfGames'>";
-	$query = mysql_query("select `gid`,`name` from `hm` where (`leader` = '1' and `gend` = '1')");
-	while($row = mysql_fetch_array($query)) {
-		echo "	<a href='?s=n&gid=".$row['gid']."'>".$row['name']."</a><br>";
-	}
-	echo "		<a href='?s=n'>New Game</a>
-			</div>";
+	?>
+    <div class='listOfGames'>
+	<?php
+		$query = mysql_query("select `gid`,`name` from `hm` where (`leader` = '1' and `gend` = '1')");
+		while($row = mysql_fetch_array($query))
+			echo "	<a href='?s=n&gid=".$row['gid']."'>".$row['name']."</a><br>";
+	?>
+    <a href='?s=n'>New Game</a>
+    </div>
+	<?php
 }
+
 if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 {
-	echo "	<div class='getInGame'>";
+	?><div class='getInGame'><?php
 	if($_GET['gid'] == '') {
-		echo "	<form action='?s=g&a=newg' method='post'>
-					Gamepassword: <input type='password' name='gpwd'><br>
-					Word: <input type='text' name='wort'><br>	
-					<input type='submit' value='ok'>
-				</form>";
+		?>
+        <form action='?s=g&a=newg' method='post'>
+            Gamepassword: <input type='password' name='gpwd'><br>
+            Word: <input type='text' name='wort'><br>	
+            <input type='submit' value='ok'>
+		</form>
+		<?php
 	} else if($_GET['gid'] != '') {		//Spiel beitreten
-		echo "	<form action='?s=g&a=chgid' method='post'>
-					<input type='hidden' name='gid' value='".$_GET['gid']."'>
-					Gamepassword: <input type='password' name='gpwd'><br>
-					<input type='submit' value='ok'>
-				</form>";
+		?>
+        <form action='?s=g&a=chgid' method='post'>
+            <input type='hidden' name='gid' value='<?=$_GET['gid']?>'>
+            Gamepassword: <input type='password' name='gpwd'><br>
+            <input type='submit' value='ok'>
+		</form>
+		<?php
 	}
 	echo "	</div>";
 } else if($s=='g' && $gid!='' && $uid!='' && $gid!='0') {
@@ -91,16 +99,20 @@ if($s=='n' && $uid!='' && $_GET['gid'] == '')		//Neues Spiel erstellen
 }
 else if($uid == '' && $s == '')
 {
-	echo "	<div class='loginForm'>
-				<form action='?s=".$s."&a=login' method='post'>
-					<input name='name' type='text'><br>
-					<input name='pwd' type='password'><input type='submit' value='login'>
-				</form>
-			</div>";
+	?>
+    <div class='loginForm'>
+        <form action='?s=<?=$s?>&a=login' method='post'>
+            <input name='name' type='text'><br>
+            <input name='pwd' type='password'><input type='submit' value='login'>
+        </form>
+	</div>
+    <?php
 }
-echo "	<div class='buttonsFromIndex'><br>";
+?>
+<div class='buttonsFromIndex'><br>
+<?php
 if($uid != '' && ($gid == '' || $gid == '0') && $s != 'g') {
-	echo "	<br><a href='?'>refresh</a>";
+	echo "	<br><a href='?' class='refresh'>refresh</a>";
 }
 if($uid != '' && $gid != '' && $gid != '0' && $s != 'g') {
 	echo "	<br><a href='?s=g'>back to game</a>";
@@ -111,9 +123,8 @@ if($uid != '' && $gid != '' && $gid != '0') {
 if($uid != '') {
 	echo "	<br><a href='?a=logout'>logout</a>";
 }
-echo "	</div>";
-
 ?>
+</div>
 </div>
 </body>
 </html>
