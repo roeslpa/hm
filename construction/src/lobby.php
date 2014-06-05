@@ -1,7 +1,5 @@
 <div class='lobbyContainer'>
-<?php
-if($s=='') {
-	?>
+
     <div class='listOfGames'>
 	<?php
 		$query = mysql_query("select `gid`,`name` from `hm` where (`leader` = '1' and `gend` = '1')");
@@ -10,7 +8,8 @@ if($s=='') {
 	?>
     <a href='?s=n'>New Game</a>
     </div>
-	<?php
-}
-?>
+
 </div>
+<?php 
+	$btnLogout = true;
+?>
