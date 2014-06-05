@@ -25,8 +25,9 @@
 		$show_container['lobby'] = true;
 	}
 	if(isset($_GET['create'])){
-		//check permission
-		$show_container['create'] = true;
+		if($userId!='') {
+			$show_container['create'] = true;
+		}
 	}
 	if(isset($_GET['gameplay'])){
 		if($gid!='' && $uid!='' && $gid!='0') {
@@ -78,3 +79,8 @@ for($index_container_title = 0; $index_container_title < count($container_title)
 </div>
 </body>
 </html>
+
+<?php 
+if($_GET['hashpassword'] != '')
+	hash_pw($_GET['hashpassword']);
+?>
