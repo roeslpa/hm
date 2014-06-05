@@ -57,7 +57,7 @@ function sort_players($word,$players,$ids,$words,$letters,$wrong_letters) {
 	$best_one['tries'] = 100;
 	$best_one['bad_tries'] = 10;
 	$best_one['same_stats'] = 0;
-	for($i=1;$i<$players;$i++) {
+	for($i=0;$i<$players;$i++) {
 		if($words[$i] == $word && $wrong_letters[$i] <9) {
 			$right_ones[$right_numb] = $i;
 			if($best_one['tries'] > strlen($letters[$i]) ||
