@@ -82,7 +82,7 @@
 <?php
 for($index_container_title = 0; $index_container_title < count($container_title); $index_container_title++) { 
 		if(isset($show_container[$container_title[$index_container_title]])) {
-			echo $content['login'];
+			echo $content[$container_title[$index_container_title]];
 		}
 	}
 ?>
