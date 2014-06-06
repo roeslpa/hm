@@ -21,7 +21,7 @@ if(isset($_GET['checklogin'])) {
 }
 
 ob_start(); //prepaire OUTPUT	
-if(!(isset($_SESSION['userId']) && !empty($_SESSION['userId']))){
+if( !(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) ){
 ?>
 <div class="loginContainer">
 <h2>Login</h2>
