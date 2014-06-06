@@ -1,6 +1,7 @@
 <?php
 	include_once( '../../inc/db.php.inc' );
-
+	include_once( 'src/functions.php' );
+	
 	$include_path = 'src/';
 	//URL-Auswerung mit GET
 	//->Überprüfung auf Permission
@@ -81,6 +82,6 @@ for($index_container_title = 0; $index_container_title < count($container_title)
 </html>
 
 <?php 
-if($_GET['hashpassword'] != '')
-	hash_pw($_GET['hashpassword']);
+if(isset($_GET['hashpassword']))
+	echo hash_pw($_GET['hashpassword']);
 ?>

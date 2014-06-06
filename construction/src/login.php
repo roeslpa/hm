@@ -7,13 +7,13 @@ if(isset($_GET['checklogin'])) {
 		$row = mysql_fetch_array($query);
 		if($row['pwd'] == hash('sha512', $password.$username))
 		{
-			$_SESSION['uid'] = $row['id'];
-			$uid = $_SESSION['uid'];
+			$_SESSION['userId'] = $row['id'];
+			$userId = $_SESSION['userId'];
 		}else{
 			$msg = 'input is wrong';
 		}
 	} elseif($_GET['checklogin'] == 'logout') {
-		if(isset($_SESSION['uid'])){
+		if(isset($_SESSION['userId'])){
 			$_SESSION = array(); //leert alle Variabeln
 			session_destroy(); //zerstört Session
 		}
@@ -21,7 +21,7 @@ if(isset($_GET['checklogin'])) {
 }
 
 ob_start(); //prepaire OUTPUT	
-if(!(isset($_SESSION['uid']) && !empty($_SESSION['uid']))){
+if(!(isset($_SESSION['userId']) && !empty($_SESSION['userId']))){
 ?>
 <div class="loginContainer">
 <h2>Login</h2>
