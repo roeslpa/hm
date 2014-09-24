@@ -41,8 +41,8 @@
 			$show_container['create'] = true;
 		}
 	}
-	if(isset($_GET['gameplay'])){
-		if($uid!='' && $gid!='' && $gid!='0') {
+	if(isset($_GET['gameplay']) || $_GET['leader']){
+		if($userId!='' && $gameId!='' && $gameId!='0') {
 			$gameInfo = getGameInfo($userId,$gameId);
 			if($gameInfo['status'] == 0) {
 				$show_container['gameplay'] = true;

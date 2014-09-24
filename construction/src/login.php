@@ -39,9 +39,7 @@ if( !(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) ){
 ?>
 <div class="welcomeContainer">
 <h2>Weclome</h2>
-<p>
-hallo <?=$username?>
-</p>
+
 </div>
 <?php 
 
